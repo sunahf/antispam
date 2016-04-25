@@ -1,0 +1,8 @@
+﻿#需要过滤的目录
+/target/
+/.settings/
+/.classpath
+/.project
+/D:/
+.idea
+*.iml

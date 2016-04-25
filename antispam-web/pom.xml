@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>antispam</artifactId>
+		<groupId>com.sunahf.antispam</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<groupId>com.sunahf.antispam</groupId>
+	<artifactId>antispam-web</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>antispam-web</name>
+	<modelVersion>4.0.0</modelVersion>
+	<description>antispam web project</description>
+
+	<properties>
+	</properties>
+
+	<dependencies>
+        <dependency>
+			<groupId>com.sunahf.antispam</groupId>
+			<artifactId>antispam-core</artifactId>
+			<version>1.0-SNAPSHOT</version>
+        </dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>ROOT</finalName>
+		<pluginManagement>
+		</pluginManagement>
+		<plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven_compiler_ver}</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven_resources_ver}</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.17</version>
+                <configuration>
+                    <argLine>-javaagent:${settings.localRepository}/org/powermock/powermock-module-javaagent/1.5.5/powermock-module-javaagent-1.5.5.jar -XX:-UseSplitVerifier</argLine>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.0.5.v20130815</version>
+                <configuration>
+                    <contextPath>/</contextPath>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <path>/</path>
+                    <port>80</port>
+                    <uriEncoding>UTF-8</uriEncoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>${maven_cobertura_ver}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <version>${maven_pmd_ver}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <version>${maven_findbugs_ver}</version>
+                <artifactId>findbugs-maven-plugin</artifactId>
+            </plugin>
+		</plugins>
+	</build>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <app.config>antispam-dev.properties</app.config>
+                <stdout.enable>&lt;appender-ref ref="STDOUT" /&gt;</stdout.enable>
+            </properties>
+        </profile>
+        <profile>
+            <id>deploy</id>
+            <properties>
+                <app.config>antispam-deploy.properties</app.config>
+                <stdout.enable></stdout.enable>
+            </properties>
+        </profile>
+        <profile>
+            <id>dragon</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <app.config>antispam-deploy.properties</app.config>
+                <stdout.enable></stdout.enable>
+            </properties>
+        </profile>
+    </profiles>
+</project>

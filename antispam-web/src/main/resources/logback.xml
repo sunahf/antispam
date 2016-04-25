@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+
+    <property name="logs.dir" value="/data/weblog/java/antispam" />
+
+    <!-- Handle JUL -->
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date [%thread] [%file:%line] [%level %logger{0}] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ACCESS" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logs.dir}/container-access.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logs.dir}/container-access.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>14</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%date [%thread] [%file:%line] [%level %logger{0}] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ALIBABA" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logs.dir}/alibaba-access.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logs.dir}/alibaba-access.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>14</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%date [%thread] [%file:%line] [%level %logger{0}] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ERROR_FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logs.dir}/error_%d{yyyy-MM-dd}_%i.log.zip
+            </fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <file>${logs.dir}/error.log</file>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%date [%thread] [%file:%line] [%level %logger{0}] - %msg%n
+            </pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="WARN_FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logs.dir}/warn_%d{yyyy-MM-dd}_%i.log.zip
+            </fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <file>${logs.dir}/warn.log</file>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%date [%thread] [%file:%line] [%level %logger{0}] - %msg%n
+            </pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="INFO_FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logs.dir}/info_%d{yyyy-MM-dd}_%i.log.zip
+            </fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <file>${logs.dir}/info.log</file>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%date [%thread] [%file:%line] [%level %logger{0}] - %msg%n
+            </pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="DEBUG_FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logs.dir}/debug_%d{yyyy-MM-dd}_%i.log.zip
+            </fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <file>${logs.dir}/debug.log</file>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%date [%thread] [%file:%line] [%level %logger{0}] - %msg%n
+            </pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+
+    <logger name="java.sql" level="WARN" />
+    <logger name="com.mchange" level="WARN" />
+    <logger name="org.apache" level="WARN" />
+    <logger name="org.mybatis" level="WARN" />
+    <logger name="org.springframework" level="INFO" />
+
+    <logger name="com.yy.cs" level="debug" additivity="false">
+        <appender-ref ref="ACCESS"/>
+    </logger>
+
+    <logger name="com.alibaba" level="info" additivity="false">
+        <appender-ref ref="ALIBABA"/>
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="INFO_FILE" />
+        <appender-ref ref="WARN_FILE" />
+        <appender-ref ref="ERROR_FILE" />
+    </root>
+</configuration>
+
