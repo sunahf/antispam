@@ -20,7 +20,7 @@ import java.util.TimerTask;
  */
 public abstract class AutoConfigBolt extends BaseBasicBolt{
 
-    protected Integer appId;
+    protected Integer strategyId;
 
     protected Integer moduleId;
 
@@ -44,7 +44,7 @@ public abstract class AutoConfigBolt extends BaseBasicBolt{
     protected void reloadConfig() throws Exception{
         Class clazz=this.getClass();
 
-        String url = loadConfigUrl + "?appId="+appId+"&moduleId="+moduleId;
+        String url = loadConfigUrl+"?moduleId="+moduleId;
         String configJson = HttpUtil.get(url);
         Map<String, Object> args = Json.strToObj(configJson, Map.class);
         while (clazz != BaseBasicBolt.class) {//循环遍历父类，到baseBasicBolt为止

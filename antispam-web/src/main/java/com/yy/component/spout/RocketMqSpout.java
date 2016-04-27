@@ -75,7 +75,7 @@ public class RocketMqSpout extends BaseRichSpout {
             //这里的instance name要改，不改的话，reload topology后，会声明同样的instance name，然后抛异常了
             consumer.getDefaultMQPushConsumerImpl().getDefaultMQPushConsumer().setInstanceName(
                     "DefaultEventSpout" + System.currentTimeMillis());
-            consumer.getDefaultMQPushConsumerImpl().getDefaultMQPushConsumer().setMessageModel(MessageModel.CLUSTERING);
+            consumer.getDefaultMQPushConsumerImpl().getDefaultMQPushConsumer().setMessageModel(MessageModel.BROADCASTING);
             consumer.start();
         } catch (Exception e) {
             e.printStackTrace();

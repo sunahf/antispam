@@ -16,13 +16,13 @@ import java.util.Map;
  */
 public class ModuleFactory {
 
-    public static IBasicBolt buildBlot(String className, String argJson,Integer id,Integer appId) throws Exception{
+    public static IBasicBolt buildBlot(String className, String argJson,Integer id,Integer strategyId) throws Exception{
         Class<?> clazz = Class.forName(className);
         IBasicBolt bean = (IBasicBolt)clazz.newInstance();
         if (StringUtils.isNotEmpty(argJson)) {
             Map<String,Object> args =Json.strToObj(argJson, Map.class);
             args.put("moduleId", id);
-            args.put("appId", appId);
+            args.put("strategyId", strategyId);
             while (clazz != BaseBasicBolt.class) {//循环遍历父类，到baseBasicBolt为止
                 for (Field field : clazz.getDeclaredFields()) {
                     if (args.containsKey(field.getName())) {
@@ -36,13 +36,13 @@ public class ModuleFactory {
         return bean;
     }
 
-    public static IRichSpout buildSpout(String className, String argJson,Integer id,Integer appId) throws Exception{
+    public static IRichSpout buildSpout(String className, String argJson,Integer id,Integer strategyId) throws Exception{
         Class clazz = Class.forName(className);
         IRichSpout bean = (IRichSpout)clazz.newInstance();
         if (StringUtils.isNotEmpty(argJson)) {
             Map<String,Object> args =Json.strToObj(argJson,Map.class);
             args.put("moduleId", id);
-            args.put("appId", appId);
+            args.put("strategyId", strategyId);
             while (clazz != BaseRichSpout.class) {//循环遍历父类，到BaseRichSpout为止
                 for (Field field : clazz.getDeclaredFields()) {
                     if (args.containsKey(field.getName())) {

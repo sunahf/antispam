@@ -50,7 +50,7 @@ public class FrequencyBolt extends BaseMatchBolt {
         String data = tuple.getString(0);
         Map<String, Object> dataMap = Json.strToObj(data, Map.class);
 
-        String redisKey="app_"+appId+"_module_"+moduleId;
+        String redisKey="str_"+strategyId+"_module_"+moduleId;
         if (StringUtils.isNotEmpty(key)) {
             redisKey = redisKey+"_"+key+"_"+dataMap.get(key);
         }

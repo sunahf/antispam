@@ -3,7 +3,7 @@ package com.yy.business.dao.gen.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppModuleExample {
+public class ModuleExample {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -14,7 +14,7 @@ public class AppModuleExample {
 
     private Integer offset;
 
-    public AppModuleExample() {
+    public ModuleExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -184,63 +184,63 @@ public class AppModuleExample {
             return (Criteria) this;
         }
 
-        public Criteria andAppIdIsNull() {
-            addCriterion("app_id is null");
+        public Criteria andStrategyIdIsNull() {
+            addCriterion("strategy_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdIsNotNull() {
-            addCriterion("app_id is not null");
+        public Criteria andStrategyIdIsNotNull() {
+            addCriterion("strategy_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdEqualTo(Integer value) {
-            addCriterion("app_id =", value, "appId");
+        public Criteria andStrategyIdEqualTo(Integer value) {
+            addCriterion("strategy_id =", value, "strategyId");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdNotEqualTo(Integer value) {
-            addCriterion("app_id <>", value, "appId");
+        public Criteria andStrategyIdNotEqualTo(Integer value) {
+            addCriterion("strategy_id <>", value, "strategyId");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdGreaterThan(Integer value) {
-            addCriterion("app_id >", value, "appId");
+        public Criteria andStrategyIdGreaterThan(Integer value) {
+            addCriterion("strategy_id >", value, "strategyId");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("app_id >=", value, "appId");
+        public Criteria andStrategyIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("strategy_id >=", value, "strategyId");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdLessThan(Integer value) {
-            addCriterion("app_id <", value, "appId");
+        public Criteria andStrategyIdLessThan(Integer value) {
+            addCriterion("strategy_id <", value, "strategyId");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdLessThanOrEqualTo(Integer value) {
-            addCriterion("app_id <=", value, "appId");
+        public Criteria andStrategyIdLessThanOrEqualTo(Integer value) {
+            addCriterion("strategy_id <=", value, "strategyId");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdIn(List<Integer> values) {
-            addCriterion("app_id in", values, "appId");
+        public Criteria andStrategyIdIn(List<Integer> values) {
+            addCriterion("strategy_id in", values, "strategyId");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdNotIn(List<Integer> values) {
-            addCriterion("app_id not in", values, "appId");
+        public Criteria andStrategyIdNotIn(List<Integer> values) {
+            addCriterion("strategy_id not in", values, "strategyId");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdBetween(Integer value1, Integer value2) {
-            addCriterion("app_id between", value1, value2, "appId");
+        public Criteria andStrategyIdBetween(Integer value1, Integer value2) {
+            addCriterion("strategy_id between", value1, value2, "strategyId");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("app_id not between", value1, value2, "appId");
+        public Criteria andStrategyIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("strategy_id not between", value1, value2, "strategyId");
             return (Criteria) this;
         }
 

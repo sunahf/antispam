@@ -1,48 +1,48 @@
 package com.yy.business.dao.gen.mapper;
 
-import com.yy.business.dao.gen.model.AppModule;
-import com.yy.business.dao.gen.model.AppModuleExample;
+import com.yy.business.dao.gen.model.Module;
+import com.yy.business.dao.gen.model.ModuleExample;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
 import java.util.List;
 
-public interface AppModuleMapper {
-    @SelectProvider(type=AppModuleSqlProvider.class, method="countByExample")
-    int countByExample(AppModuleExample example);
+public interface ModuleMapper {
+    @SelectProvider(type=ModuleSqlProvider.class, method="countByExample")
+    int countByExample(ModuleExample example);
 
-    @DeleteProvider(type=AppModuleSqlProvider.class, method="deleteByExample")
-    int deleteByExample(AppModuleExample example);
+    @DeleteProvider(type=ModuleSqlProvider.class, method="deleteByExample")
+    int deleteByExample(ModuleExample example);
 
     @Delete({
-        "delete from app_module",
+        "delete from module",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
 
     @Insert({
-        "insert into app_module (id, app_id, ",
+        "insert into module (id, strategy_id, ",
         "module_name, module_type, ",
         "module_class, module_arg, ",
         "upstream_module_name, level, ",
         "group_type, parallelism, ",
         "status)",
-        "values (#{id,jdbcType=INTEGER}, #{appId,jdbcType=INTEGER}, ",
+        "values (#{id,jdbcType=INTEGER}, #{strategyId,jdbcType=INTEGER}, ",
         "#{moduleName,jdbcType=VARCHAR}, #{moduleType,jdbcType=INTEGER}, ",
         "#{moduleClass,jdbcType=VARCHAR}, #{moduleArg,jdbcType=VARCHAR}, ",
         "#{upstreamModuleName,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, ",
         "#{groupType,jdbcType=INTEGER}, #{parallelism,jdbcType=INTEGER}, ",
         "#{status,jdbcType=INTEGER})"
     })
-    int insert(AppModule record);
+    int insert(Module record);
 
-    @InsertProvider(type=AppModuleSqlProvider.class, method="insertSelective")
-    int insertSelective(AppModule record);
+    @InsertProvider(type=ModuleSqlProvider.class, method="insertSelective")
+    int insertSelective(Module record);
 
-    @SelectProvider(type=AppModuleSqlProvider.class, method="selectByExample")
+    @SelectProvider(type=ModuleSqlProvider.class, method="selectByExample")
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="app_id", property="appId", jdbcType=JdbcType.INTEGER),
+        @Result(column="strategy_id", property="strategyId", jdbcType=JdbcType.INTEGER),
         @Result(column="module_name", property="moduleName", jdbcType=JdbcType.VARCHAR),
         @Result(column="module_type", property="moduleType", jdbcType=JdbcType.INTEGER),
         @Result(column="module_class", property="moduleClass", jdbcType=JdbcType.VARCHAR),
@@ -52,18 +52,18 @@ public interface AppModuleMapper {
         @Result(column="group_type", property="groupType", jdbcType=JdbcType.INTEGER),
         @Result(column="parallelism", property="parallelism", jdbcType=JdbcType.INTEGER),
         @Result(column="status", property="status", jdbcType=JdbcType.INTEGER)
-    }) List<AppModule> selectByExample(AppModuleExample example);
+    }) List<Module> selectByExample(ModuleExample example);
 
     @Select({
         "select",
-        "id, app_id, module_name, module_type, module_class, module_arg, upstream_module_name, ",
+        "id, strategy_id, module_name, module_type, module_class, module_arg, upstream_module_name, ",
         "level, group_type, parallelism, status",
-        "from app_module",
+        "from module",
         "where id = #{id,jdbcType=INTEGER}"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="app_id", property="appId", jdbcType=JdbcType.INTEGER),
+        @Result(column="strategy_id", property="strategyId", jdbcType=JdbcType.INTEGER),
         @Result(column="module_name", property="moduleName", jdbcType=JdbcType.VARCHAR),
         @Result(column="module_type", property="moduleType", jdbcType=JdbcType.INTEGER),
         @Result(column="module_class", property="moduleClass", jdbcType=JdbcType.VARCHAR),
@@ -73,20 +73,21 @@ public interface AppModuleMapper {
         @Result(column="group_type", property="groupType", jdbcType=JdbcType.INTEGER),
         @Result(column="parallelism", property="parallelism", jdbcType=JdbcType.INTEGER),
         @Result(column="status", property="status", jdbcType=JdbcType.INTEGER)
-    }) AppModule selectByPrimaryKey(Integer id);
+    })
+    Module selectByPrimaryKey(Integer id);
 
-    @UpdateProvider(type=AppModuleSqlProvider.class, method="updateByExampleSelective")
-    int updateByExampleSelective(@Param("record") AppModule record, @Param("example") AppModuleExample example);
+    @UpdateProvider(type=ModuleSqlProvider.class, method="updateByExampleSelective")
+    int updateByExampleSelective(@Param("record") Module record, @Param("example") ModuleExample example);
 
-    @UpdateProvider(type=AppModuleSqlProvider.class, method="updateByExample")
-    int updateByExample(@Param("record") AppModule record, @Param("example") AppModuleExample example);
+    @UpdateProvider(type=ModuleSqlProvider.class, method="updateByExample")
+    int updateByExample(@Param("record") Module record, @Param("example") ModuleExample example);
 
-    @UpdateProvider(type=AppModuleSqlProvider.class, method="updateByPrimaryKeySelective")
-    int updateByPrimaryKeySelective(AppModule record);
+    @UpdateProvider(type=ModuleSqlProvider.class, method="updateByPrimaryKeySelective")
+    int updateByPrimaryKeySelective(Module record);
 
     @Update({
-        "update app_module",
-        "set app_id = #{appId,jdbcType=INTEGER},",
+        "update module",
+        "set strategy_id = #{strategyId,jdbcType=INTEGER},",
           "module_name = #{moduleName,jdbcType=VARCHAR},",
           "module_type = #{moduleType,jdbcType=INTEGER},",
           "module_class = #{moduleClass,jdbcType=VARCHAR},",
@@ -98,5 +99,5 @@ public interface AppModuleMapper {
           "status = #{status,jdbcType=INTEGER}",
         "where id = #{id,jdbcType=INTEGER}"
     })
-    int updateByPrimaryKey(AppModule record);
+    int updateByPrimaryKey(Module record);
 }

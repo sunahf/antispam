@@ -1,61 +1,56 @@
 package com.yy.business.dao.gen.mapper;
 
-import com.yy.business.dao.gen.model.AppConfig;
-import com.yy.business.dao.gen.model.AppConfigExample;
-import com.yy.business.dao.gen.model.AppConfigExample.Criteria;
-import com.yy.business.dao.gen.model.AppConfigExample.Criterion;
+import com.yy.business.dao.gen.model.App;
+import com.yy.business.dao.gen.model.AppExample;
+import com.yy.business.dao.gen.model.AppExample.Criteria;
+import com.yy.business.dao.gen.model.AppExample.Criterion;
 
 import java.util.List;
 import java.util.Map;
 
 import static org.apache.ibatis.jdbc.SqlBuilder.*;
 
-public class AppConfigSqlProvider {
+public class AppSqlProvider {
 
-    public String countByExample(AppConfigExample example) {
+    public String countByExample(AppExample example) {
         BEGIN();
         SELECT("count (*)");
-        FROM("app_config");
+        FROM("app");
         applyWhere(example, false);
         return SQL();
     }
 
-    public String deleteByExample(AppConfigExample example) {
+    public String deleteByExample(AppExample example) {
         BEGIN();
-        DELETE_FROM("app_config");
+        DELETE_FROM("app");
         applyWhere(example, false);
         return SQL();
     }
 
-    public String insertSelective(AppConfig record) {
+    public String insertSelective(App record) {
         BEGIN();
-        INSERT_INTO("app_config");
+        INSERT_INTO("app");
         
-        if (record.getAppid() != null) {
-            VALUES("appid", "#{appid,jdbcType=INTEGER}");
+        if (record.getId() != null) {
+            VALUES("id", "#{id,jdbcType=INTEGER}");
         }
         
-        if (record.getAppName() != null) {
-            VALUES("app_name", "#{appName,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getMaxTaskParallelism() != null) {
-            VALUES("max_task_parallelism", "#{maxTaskParallelism,jdbcType=INTEGER}");
+        if (record.getName() != null) {
+            VALUES("name", "#{name,jdbcType=VARCHAR}");
         }
         
         return SQL();
     }
 
-    public String selectByExample(AppConfigExample example) {
+    public String selectByExample(AppExample example) {
         BEGIN();
         if (example != null && example.isDistinct()) {
-            SELECT_DISTINCT("appid");
+            SELECT_DISTINCT("id");
         } else {
-            SELECT("appid");
+            SELECT("id");
         }
-        SELECT("app_name");
-        SELECT("max_task_parallelism");
-        FROM("app_config");
+        SELECT("name");
+        FROM("app");
         applyWhere(example, false);
         
         if (example != null && example.getOrderByClause() != null) {
@@ -66,22 +61,18 @@ public class AppConfigSqlProvider {
     }
 
     public String updateByExampleSelective(Map<String, Object> parameter) {
-        AppConfig record = (AppConfig) parameter.get("record");
-        AppConfigExample example = (AppConfigExample) parameter.get("example");
+        App record = (App) parameter.get("record");
+        AppExample example = (AppExample) parameter.get("example");
         
         BEGIN();
-        UPDATE("app_config");
+        UPDATE("app");
         
-        if (record.getAppid() != null) {
-            SET("appid = #{record.appid,jdbcType=INTEGER}");
+        if (record.getId() != null) {
+            SET("id = #{record.id,jdbcType=INTEGER}");
         }
         
-        if (record.getAppName() != null) {
-            SET("app_name = #{record.appName,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getMaxTaskParallelism() != null) {
-            SET("max_task_parallelism = #{record.maxTaskParallelism,jdbcType=INTEGER}");
+        if (record.getName() != null) {
+            SET("name = #{record.name,jdbcType=VARCHAR}");
         }
         
         applyWhere(example, true);
@@ -90,35 +81,30 @@ public class AppConfigSqlProvider {
 
     public String updateByExample(Map<String, Object> parameter) {
         BEGIN();
-        UPDATE("app_config");
+        UPDATE("app");
         
-        SET("appid = #{record.appid,jdbcType=INTEGER}");
-        SET("app_name = #{record.appName,jdbcType=VARCHAR}");
-        SET("max_task_parallelism = #{record.maxTaskParallelism,jdbcType=INTEGER}");
+        SET("id = #{record.id,jdbcType=INTEGER}");
+        SET("name = #{record.name,jdbcType=VARCHAR}");
         
-        AppConfigExample example = (AppConfigExample) parameter.get("example");
+        AppExample example = (AppExample) parameter.get("example");
         applyWhere(example, true);
         return SQL();
     }
 
-    public String updateByPrimaryKeySelective(AppConfig record) {
+    public String updateByPrimaryKeySelective(App record) {
         BEGIN();
-        UPDATE("app_config");
+        UPDATE("app");
         
-        if (record.getAppName() != null) {
-            SET("app_name = #{appName,jdbcType=VARCHAR}");
+        if (record.getName() != null) {
+            SET("name = #{name,jdbcType=VARCHAR}");
         }
         
-        if (record.getMaxTaskParallelism() != null) {
-            SET("max_task_parallelism = #{maxTaskParallelism,jdbcType=INTEGER}");
-        }
-        
-        WHERE("appid = #{appid,jdbcType=INTEGER}");
+        WHERE("id = #{id,jdbcType=INTEGER}");
         
         return SQL();
     }
 
-    protected void applyWhere(AppConfigExample example, boolean includeExamplePhrase) {
+    protected void applyWhere(AppExample example, boolean includeExamplePhrase) {
         if (example == null) {
             return;
         }

@@ -1,9 +1,9 @@
 package com.yy.business.dao.gen.model;
 
-public class AppModule {
+public class Module {
     private Integer id;
 
-    private Integer appId;
+    private Integer strategyId;
 
     private String moduleName;
 
@@ -31,12 +31,12 @@ public class AppModule {
         this.id = id;
     }
 
-    public Integer getAppId() {
-        return appId;
+    public Integer getStrategyId() {
+        return strategyId;
     }
 
-    public void setAppId(Integer appId) {
-        this.appId = appId;
+    public void setStrategyId(Integer strategyId) {
+        this.strategyId = strategyId;
     }
 
     public String getModuleName() {

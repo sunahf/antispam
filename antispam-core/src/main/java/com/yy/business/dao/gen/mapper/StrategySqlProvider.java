@@ -1,35 +1,35 @@
 package com.yy.business.dao.gen.mapper;
 
-import com.yy.business.dao.gen.model.AppModule;
-import com.yy.business.dao.gen.model.AppModuleExample;
-import com.yy.business.dao.gen.model.AppModuleExample.Criteria;
-import com.yy.business.dao.gen.model.AppModuleExample.Criterion;
+import com.yy.business.dao.gen.model.Strategy;
+import com.yy.business.dao.gen.model.StrategyExample;
+import com.yy.business.dao.gen.model.StrategyExample.Criteria;
+import com.yy.business.dao.gen.model.StrategyExample.Criterion;
 
 import java.util.List;
 import java.util.Map;
 
 import static org.apache.ibatis.jdbc.SqlBuilder.*;
 
-public class AppModuleSqlProvider {
+public class StrategySqlProvider {
 
-    public String countByExample(AppModuleExample example) {
+    public String countByExample(StrategyExample example) {
         BEGIN();
         SELECT("count (*)");
-        FROM("app_module");
+        FROM("strategy");
         applyWhere(example, false);
         return SQL();
     }
 
-    public String deleteByExample(AppModuleExample example) {
+    public String deleteByExample(StrategyExample example) {
         BEGIN();
-        DELETE_FROM("app_module");
+        DELETE_FROM("strategy");
         applyWhere(example, false);
         return SQL();
     }
 
-    public String insertSelective(AppModule record) {
+    public String insertSelective(Strategy record) {
         BEGIN();
-        INSERT_INTO("app_module");
+        INSERT_INTO("strategy");
         
         if (record.getId() != null) {
             VALUES("id", "#{id,jdbcType=INTEGER}");
@@ -39,46 +39,18 @@ public class AppModuleSqlProvider {
             VALUES("app_id", "#{appId,jdbcType=INTEGER}");
         }
         
-        if (record.getModuleName() != null) {
-            VALUES("module_name", "#{moduleName,jdbcType=VARCHAR}");
+        if (record.getStrategyName() != null) {
+            VALUES("strategy_name", "#{strategyName,jdbcType=VARCHAR}");
         }
         
-        if (record.getModuleType() != null) {
-            VALUES("module_type", "#{moduleType,jdbcType=INTEGER}");
-        }
-        
-        if (record.getModuleClass() != null) {
-            VALUES("module_class", "#{moduleClass,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getModuleArg() != null) {
-            VALUES("module_arg", "#{moduleArg,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getUpstreamModuleName() != null) {
-            VALUES("upstream_module_name", "#{upstreamModuleName,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getLevel() != null) {
-            VALUES("level", "#{level,jdbcType=INTEGER}");
-        }
-        
-        if (record.getGroupType() != null) {
-            VALUES("group_type", "#{groupType,jdbcType=INTEGER}");
-        }
-        
-        if (record.getParallelism() != null) {
-            VALUES("parallelism", "#{parallelism,jdbcType=INTEGER}");
-        }
-        
-        if (record.getStatus() != null) {
-            VALUES("status", "#{status,jdbcType=INTEGER}");
+        if (record.getMaxTaskParallelism() != null) {
+            VALUES("max_task_parallelism", "#{maxTaskParallelism,jdbcType=INTEGER}");
         }
         
         return SQL();
     }
 
-    public String selectByExample(AppModuleExample example) {
+    public String selectByExample(StrategyExample example) {
         BEGIN();
         if (example != null && example.isDistinct()) {
             SELECT_DISTINCT("id");
@@ -86,16 +58,9 @@ public class AppModuleSqlProvider {
             SELECT("id");
         }
         SELECT("app_id");
-        SELECT("module_name");
-        SELECT("module_type");
-        SELECT("module_class");
-        SELECT("module_arg");
-        SELECT("upstream_module_name");
-        SELECT("level");
-        SELECT("group_type");
-        SELECT("parallelism");
-        SELECT("status");
-        FROM("app_module");
+        SELECT("strategy_name");
+        SELECT("max_task_parallelism");
+        FROM("strategy");
         applyWhere(example, false);
         
         if (example != null && example.getOrderByClause() != null) {
@@ -106,11 +71,11 @@ public class AppModuleSqlProvider {
     }
 
     public String updateByExampleSelective(Map<String, Object> parameter) {
-        AppModule record = (AppModule) parameter.get("record");
-        AppModuleExample example = (AppModuleExample) parameter.get("example");
+        Strategy record = (Strategy) parameter.get("record");
+        StrategyExample example = (StrategyExample) parameter.get("example");
         
         BEGIN();
-        UPDATE("app_module");
+        UPDATE("strategy");
         
         if (record.getId() != null) {
             SET("id = #{record.id,jdbcType=INTEGER}");
@@ -120,40 +85,12 @@ public class AppModuleSqlProvider {
             SET("app_id = #{record.appId,jdbcType=INTEGER}");
         }
         
-        if (record.getModuleName() != null) {
-            SET("module_name = #{record.moduleName,jdbcType=VARCHAR}");
+        if (record.getStrategyName() != null) {
+            SET("strategy_name = #{record.strategyName,jdbcType=VARCHAR}");
         }
         
-        if (record.getModuleType() != null) {
-            SET("module_type = #{record.moduleType,jdbcType=INTEGER}");
-        }
-        
-        if (record.getModuleClass() != null) {
-            SET("module_class = #{record.moduleClass,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getModuleArg() != null) {
-            SET("module_arg = #{record.moduleArg,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getUpstreamModuleName() != null) {
-            SET("upstream_module_name = #{record.upstreamModuleName,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getLevel() != null) {
-            SET("level = #{record.level,jdbcType=INTEGER}");
-        }
-        
-        if (record.getGroupType() != null) {
-            SET("group_type = #{record.groupType,jdbcType=INTEGER}");
-        }
-        
-        if (record.getParallelism() != null) {
-            SET("parallelism = #{record.parallelism,jdbcType=INTEGER}");
-        }
-        
-        if (record.getStatus() != null) {
-            SET("status = #{record.status,jdbcType=INTEGER}");
+        if (record.getMaxTaskParallelism() != null) {
+            SET("max_task_parallelism = #{record.maxTaskParallelism,jdbcType=INTEGER}");
         }
         
         applyWhere(example, true);
@@ -162,67 +99,32 @@ public class AppModuleSqlProvider {
 
     public String updateByExample(Map<String, Object> parameter) {
         BEGIN();
-        UPDATE("app_module");
+        UPDATE("strategy");
         
         SET("id = #{record.id,jdbcType=INTEGER}");
         SET("app_id = #{record.appId,jdbcType=INTEGER}");
-        SET("module_name = #{record.moduleName,jdbcType=VARCHAR}");
-        SET("module_type = #{record.moduleType,jdbcType=INTEGER}");
-        SET("module_class = #{record.moduleClass,jdbcType=VARCHAR}");
-        SET("module_arg = #{record.moduleArg,jdbcType=VARCHAR}");
-        SET("upstream_module_name = #{record.upstreamModuleName,jdbcType=VARCHAR}");
-        SET("level = #{record.level,jdbcType=INTEGER}");
-        SET("group_type = #{record.groupType,jdbcType=INTEGER}");
-        SET("parallelism = #{record.parallelism,jdbcType=INTEGER}");
-        SET("status = #{record.status,jdbcType=INTEGER}");
+        SET("strategy_name = #{record.strategyName,jdbcType=VARCHAR}");
+        SET("max_task_parallelism = #{record.maxTaskParallelism,jdbcType=INTEGER}");
         
-        AppModuleExample example = (AppModuleExample) parameter.get("example");
+        StrategyExample example = (StrategyExample) parameter.get("example");
         applyWhere(example, true);
         return SQL();
     }
 
-    public String updateByPrimaryKeySelective(AppModule record) {
+    public String updateByPrimaryKeySelective(Strategy record) {
         BEGIN();
-        UPDATE("app_module");
+        UPDATE("strategy");
         
         if (record.getAppId() != null) {
             SET("app_id = #{appId,jdbcType=INTEGER}");
         }
         
-        if (record.getModuleName() != null) {
-            SET("module_name = #{moduleName,jdbcType=VARCHAR}");
+        if (record.getStrategyName() != null) {
+            SET("strategy_name = #{strategyName,jdbcType=VARCHAR}");
         }
         
-        if (record.getModuleType() != null) {
-            SET("module_type = #{moduleType,jdbcType=INTEGER}");
-        }
-        
-        if (record.getModuleClass() != null) {
-            SET("module_class = #{moduleClass,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getModuleArg() != null) {
-            SET("module_arg = #{moduleArg,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getUpstreamModuleName() != null) {
-            SET("upstream_module_name = #{upstreamModuleName,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getLevel() != null) {
-            SET("level = #{level,jdbcType=INTEGER}");
-        }
-        
-        if (record.getGroupType() != null) {
-            SET("group_type = #{groupType,jdbcType=INTEGER}");
-        }
-        
-        if (record.getParallelism() != null) {
-            SET("parallelism = #{parallelism,jdbcType=INTEGER}");
-        }
-        
-        if (record.getStatus() != null) {
-            SET("status = #{status,jdbcType=INTEGER}");
+        if (record.getMaxTaskParallelism() != null) {
+            SET("max_task_parallelism = #{maxTaskParallelism,jdbcType=INTEGER}");
         }
         
         WHERE("id = #{id,jdbcType=INTEGER}");
@@ -230,7 +132,7 @@ public class AppModuleSqlProvider {
         return SQL();
     }
 
-    protected void applyWhere(AppModuleExample example, boolean includeExamplePhrase) {
+    protected void applyWhere(StrategyExample example, boolean includeExamplePhrase) {
         if (example == null) {
             return;
         }
